@@ -1,4 +1,4 @@
-import streamlit as st
+code_content = """import streamlit as st
 import random
 import os
 
@@ -13,7 +13,7 @@ st.set_page_config(
 )
 
 # Custom Styling
-st.markdown("""
+st.markdown(\"\"\"
     <style>
     .stApp {
         background: linear-gradient(135deg, #0d0f12 0%, #1a1d24 100%);
@@ -54,10 +54,9 @@ st.markdown("""
         padding: 12px 24px !important;
     }
     </style>
-""", unsafe_allow_html=True)
+\"\"\", unsafe_allow_html=True)
 
 # --- PRIVACY LOCK SCREEN ---
-# Change "ceecee2026" to whatever secret password or date you want her to type!
 SECRET_PASSWORD = "ceecee" 
 
 st.markdown("<h1 class='main-title'>🔒 Private Access</h1>", unsafe_allow_html=True)
@@ -71,18 +70,18 @@ st.markdown("</div>", unsafe_allow_html=True)
 if entered_password == SECRET_PASSWORD:
     st.success("Access Granted! Enjoy your day ✨")
     st.balloons()
-
-    # --- ALL YOUR MAIN APP CONTENT STARTS HERE ---
+    
+    # --- MAIN APP CONTENT ---
     st.markdown("<h1 class='main-title'>✨ Happy Birthday, CeeCee ✨</h1>", unsafe_allow_html=True)
     st.markdown("<p class='sub-title'>Today is all about celebrating YOU 👑</p>", unsafe_allow_html=True)
 
-    # Music Player Section
+    # Music Player Section (With Autoplay enabled right after login!)
     music_path = os.path.join(BASE_DIR, "music", "bg_music.mp3")
     if os.path.exists(music_path):
         st.markdown("<div class='custom-card'>", unsafe_allow_html=True)
-        st.markdown("### 🎵 Press Play for Her Soundtrack")
+        st.markdown("### 🎵 Her Soundtrack")
         with open(music_path, "rb") as audio_file:
-            st.audio(audio_file.read(), format="audio/mp3")
+            st.audio(audio_file.read(), format="audio/mp3", autoplay=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
     # Main Spotlight Cover Photo
@@ -92,7 +91,7 @@ if entered_password == SECRET_PASSWORD:
         st.image(cover_path, caption="The Main Attraction ⭐", use_container_width=True)
     else:
         st.info("💡 Place `main_photo.jpg` inside the `photos/` folder!")
-
+    
     st.markdown("### Happy Birthday to a Pure Gem ✨")
     st.write("I created this exclusive page just for you. Hope this year brings you everything you've been working for and more!")
     st.markdown("</div>", unsafe_allow_html=True)
@@ -107,7 +106,7 @@ if entered_password == SECRET_PASSWORD:
         if os.path.exists(m1_path):
             st.image(m1_path, use_container_width=True)
             st.caption("Pure Elegance ✨")
-
+        
         m2_path = os.path.join(BASE_DIR, "photos", "memory2.jpg")
         if os.path.exists(m2_path):
             st.image(m2_path, use_container_width=True)
@@ -118,7 +117,7 @@ if entered_password == SECRET_PASSWORD:
         if os.path.exists(m3_path):
             st.image(m3_path, use_container_width=True)
             st.caption("Main Character Energy 🌟")
-
+        
         st.markdown("<div style='padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: center; margin-top: 10px;'>", unsafe_allow_html=True)
         st.write("👑 **Queen of the Day**")
         st.caption("Looking forward to taking a million more photos together!")
@@ -150,9 +149,9 @@ if entered_password == SECRET_PASSWORD:
         st.snow()
         st.balloons()
         st.toast("BOOM! Happy Birthday CeeCee! 🎆🎂", icon="👑")
-
+        
         import streamlit.components.v1 as components
-        fireworks_html = """
+        fireworks_html = \"\"\"
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
         <script>
             var duration = 3.5 * 1000;
@@ -167,9 +166,15 @@ if entered_password == SECRET_PASSWORD:
               confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
             }, 250);
         </script>
-        """
+        \"\"\"
         components.html(fireworks_html, height=50)
         st.markdown("### 🥂 Cheers to another year of health, wealth, success, and pure joy!")
 
 elif entered_password != "":
     st.error("Incorrect password! Try again.")
+"""
+
+with open("ceecee_birthday/ceecee_birthday.py", "w", encoding="utf-8") as f:
+  f.write(code_content)
+
+print("File updated successfully without indentation issues!")
